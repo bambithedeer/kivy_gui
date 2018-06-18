@@ -11,10 +11,10 @@
         rows: 5
 
         Label:
-            text: str(int(slider_id.value))
+            text: str(int(backlight_slider.value))
 
         Slider:
-            id: slider_id
+            id: backlight_slider
             step: 1
             on_touch_up: root.update_backlight_val(self.value)
 
