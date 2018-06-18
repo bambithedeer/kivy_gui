@@ -1,8 +1,16 @@
 <HomeScreen>:
     GridLayout:
         rows: 5
-        LightButton:
+
+        Button:
+            text: "Settings"
+            on_press: root.manager.current = 'Settings'
+
+        Button:
+            text: "Lights"
             on_press: root.manager.current = 'Lights'
 
-        ExitButton:
+        Button:
+            id: exit_button
+            text: "Quit"
             on_press: root.close_gui()

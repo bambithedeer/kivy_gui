@@ -1,6 +1,24 @@
 <LightScreen>:
     GridLayout:
         rows: 5
-        BackButton:
+        Button:
+            id: home_button
+            text: "Back to homescreen"
             on_press: root.manager.current = 'Home'
 
+<SettingScreen>:
+    GridLayout:
+        rows: 5
+
+        Label:
+            text: str(int(slider_id.value))
+
+        Slider:
+            id: slider_id
+            step: 1
+            on_touch_up: root.update_backlight_val(self.value)
+
+        Button:
+            id: home_button
+            text: "Back to homescreen"
+            on_press: root.manager.current = 'Home'

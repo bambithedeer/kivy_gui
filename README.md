@@ -1,2 +1,3 @@
-# kivy_gui
-basic kivy gui for custom pine64 tablet
+Basic gui for pine64 custom tablet
+
+Version explanation in main.py
