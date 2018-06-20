@@ -1,18 +1,14 @@
 <HomeScreen>:
-    GridLayout:
-        rows: 5
+    name: "home"
 
+    HomeGrid:
+        id: base_layout
         Button:
-            id: settings_button
-            text: "Settings"
-            on_press: root.manager.current = 'Settings'
-
+            text: "Delete"
+            on_press: base_layout.numButtons = root.delete_but(base_layout.numButtons, base_layout.minButtons)
         Button:
-            id: light_button
-            text: "Lights"
-            on_press: root.manager.current = 'Lights'
-
+            text: "Add"
+            on_press: base_layout.numButtons = root.add_but(base_layout.numButtons, base_layout.maxButtons)
         Button:
-            id: exit_button
             text: "Quit"
             on_press: root.close_gui()
