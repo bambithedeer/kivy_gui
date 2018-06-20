@@ -67,6 +67,10 @@ class HomeScreen(Screen):
         exit()
 
 
+class MusicScreen(Screen):
+    pass
+
+
 class LightScreen(Screen):
 
     # TODO: Add functionality to get real time updates on light states

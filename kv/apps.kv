@@ -1,6 +1,14 @@
 <LightScreen>:
     GridLayout:
         rows: 5
+        GridLayout:
+
+        GridLayout:
+
+        GridLayout:
+
+        GridLayout:
+
         Button:
             id: home_button
             text: "Back to homescreen"
@@ -10,15 +18,27 @@
     GridLayout:
         rows: 5
 
-        Label:
-            text: str(int(backlight_slider.value))
+        GridLayout:
+            rows: 1
+            cols: 3
 
-        Slider:
-            id: backlight_slider
-            step: 1
-            on_touch_up: root.update_backlight_val(self.value)
+            GridLayout:
+                rows: 2
+                cols: 1
+
+                Label:
+                    text: "Backlight Value"
+
+                Slider:
+                    id: backlight_slider
+                    orientation: "vertical"
+                    step: 1
+                    on_touch_up: root.update_backlight_val(self.value)
+
+            Label:
+                text: str(int(backlight_slider.value))
 
         Button:
             id: home_button
             text: "Back to homescreen"
-            on_press: root.manager.current = 'Home'
+            on_press: root.manager.current = "Home"
