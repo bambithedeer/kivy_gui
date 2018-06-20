@@ -1,51 +1,57 @@
 from kivy.uix.screenmanager import Screen
+from kivy.uix.button import Button
 from layouts import *
 
 
 class HomeScreen(Screen):
 
-    def __init__(self, **kwargs):
-        Screen.__init__(self, **kwargs)
-        HomeGrid.rows = 4
-        HomeGrid.cols = 4
-        HomeGrid.maxButtons = 16
-        HomeGrid.minButtons = 3
-        HomeGrid.numButtons = 3
-
-
     # TODO: Investigate login screen with virtual keypad
     # TODO: Investigate Virtual keyboard
     # TODO: Investigate battery gauge for tablet
-        # Exit i3 and get back to main armbian screen -
-        # look at start up script to find where it gets battery information
+    # Exit i3 and get back to main armbian screen -
+    # look at start up script to find where it gets battery information
     # TODO: Find more things to add to homescreen
 
-    def add_but(self, num_but, max_but):
+    def delete_but(self):
+
         # TODO: Find a way to dynamically add homescreen buttons/apps
 
-        print(str(num_but) + " " + str(max_but))
+        print(str(self.parent.numButtons) + " " + str(self.parent.minButtons))
 
-        if num_but + 1 <= max_but:
-            num_but = num_but + 1
-            print(num_but)
-            return num_but
+        if self.parent.numButtons - 1 >= self.parent.minButtons:
+            self.parent.numButtons = self.parent.numButtons - 1
+            print(self.parent.numButtons)
+            return self.parent.numButtons
         else:
             print("Not enough space to add a new app!")
-            return num_but
+            return self.parent.numButtons
 
-    def delete_but(self, num_but, min_but):
-        # TODO: Find a way to dynamically delete homescreen buttons/apps
-        print(str(num_but) + " " + str(min_but))
-        if num_but - 1 >= min_but:
-            num_but = num_but - 1
-            print(num_but)
-            return num_but
+    def add_but(self):
+
+        # TODO: Find a way to dynamically add homescreen buttons/apps
+
+        print(str(self.parent.numButtons) + " " + str(self.parent.maxButtons))
+
+        if self.parent.numButtons + 1 <= self.parent.maxButtons:
+            self.parent.numButtons = self.parent.numButtons + 1
+            ## self.parent.add_widget(Button(text="ADDED", id="test"))
+            print(self.parent.numButtons)
+            return self.parent.numButtons
         else:
-            print("No more apps to delete!")
-            return num_but
+            print("Not enough space to add a new app!")
+            return self.parent.numButtons
 
     def close_gui(self):
         exit()
+
+    grid = HomeGrid()
+    grid.add_widget(Button(id="add", text="Add", on_press=add_but))
+    grid.add_widget(Button(id="delete", text="Delete", on_press=delete_but))
+    grid.add_widget(Button(id="quit", text="Quit", on_press=close_gui))
+
+    def __init__(self, **kwargs):
+        Screen.__init__(self, **kwargs)
+        self.add_widget(self.grid)
 
 
 class MusicScreen(Screen):

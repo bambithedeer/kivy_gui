@@ -35,14 +35,17 @@ from kivy.uix.screenmanager import ScreenManager, NoTransition
 Config.set('graphics', 'width', '1024')
 Config.set('graphics', 'height', '600')
 
-kv_path = './kv/'
-for kv in listdir(kv_path):
-    Builder.load_file(kv_path+kv)
-
 
 class MainApp(App):
     sm = ScreenManager()
+    sm.id = "manager"
     sm.transition = NoTransition()
+
+    def test(self):
+        print("TEST")
+
+    def add_app(self, app_name):
+        print(app_name)
 
     def build(self):
         self.sm.add_widget(HomeScreen())
